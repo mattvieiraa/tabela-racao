@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Racao</title>
+    <script>
+        function calcular() {
+            var tipoRacao = document.getElementById('tipoRacao').value;
+            var tipoCalculo = document.getElementById('tipoCalculo').value;
+
+            if (tipoCalculo === 'quantidade') {
+                var quantidade = parseFloat(document.getElementById('quantidade').value);
+                var kgPorBatida = getKgPorBatida(tipoRacao);
+                var resultado = Math.floor(quantidade / kgPorBatida); // Arredonda para baixo para remover os .00
+                document.getElementById('resultado').innerHTML = "ESSA RACAO TEM: " + resultado + " BATIDAS";
+            } else {
+                var batidas = parseFloat(document.getElementById('batidas').value);
+                var kgPorBatida = getKgPorBatida(tipoRacao);
+                var resultado = batidas * kgPorBatida;
+                document.getElementById('resultado').innerHTML = "ESSA RACAO TEM: " + resultado.toFixed(2) + " KG";
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('calcForm').reset();
+            document.getElementById('resultado').innerHTML = "";
+        }
+
+        function getKgPorBatida(tipoRacao) {
+            switch (tipoRacao) {
+                case 'postura':
+                    return 900;
+                case 'crescimento':
+                    return 700;
+                case 'macho':
+                    return 700;
+                case 'prepostura':
+                    return 800;
+                case 'iniciais':
+                    return 800;
+                default:
+                    return 0;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Racao</h1>
+
+    <form id="calcForm">
+
+        <div>
+            <label for="quantidade">Digite a Quantidade:</label>
+            <input type="number" id="quantidade" step="any">
+        </div>
+
+        <div>
+            <label>OU Digite a Quantidade de Batidas:</label>
+            <input type="number" id="batidas" step="any">
+        </div>
+
+        <div>
+            <label>Selecione o Tipo de Racao:</label>
+            <select id="tipoRacao">
+                <option value="postura">Postura</option>
+                <option value="crescimento">Crescimento</option>
+                <option value="macho">Macho</option>
+                <option value="prepostura">Pre Postura</option>
+                <option value="iniciais">Iniciais</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Selecione o Tipo de Calculo:</label>
+            <select id="tipoCalculo">
+                <option value="quantidade">Calculo de Batidas</option>
+                <option value="batidas">Calculo de Quantidade</option>
+            </select>
+        </div>
+
+        <button type="button" onclick="calcular()">Calcular</button>
+        <button type="button" onclick="resetForm()">Reset</button>
+
+    </form>
+
+    <p id="resultado"></p>
+</body>
+</html>
