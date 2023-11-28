@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de Racao - Fabrica de Racao 2 Friato</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #dddddd;
+        }
+
+        .mensagem {
+            background-color: #dddddd;
+            padding: 10px;
+            border: 1px solid #999999;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var cells = document.querySelectorAll('td, th');
+            cells.forEach(function (cell) {
+                cell.textContent = cell.textContent.replace(/[^\w\s]/gi, '');
+            });
+        });
+
+        function calcularRacao() {
+            var linhagem = document.getElementById("linhagem").value;
+            var idade = parseInt(document.getElementById("idade").value);
+
+            var tipoRacao = obterTipoRacao(linhagem, idade);
+
+            // Criar elemento de mensagem
+            var mensagemElement = document.createElement("div");
+            mensagemElement.classList.add("mensagem");
+            mensagemElement.textContent = "Tipo de Racao: " + tipoRacao;
+
+            // Inserir a mensagem acima da linha horizontal
+            var hrElement = document.querySelector('hr');
+            hrElement.parentNode.insertBefore(mensagemElement, hrElement);
+        }
+
+        	function obterTipoRacao(linhagem, idade) {
+
+            alert("Tipo de Racao: " + tipoRacao);
+        }
+
+        function obterTipoRacao(linhagem, idade) {
+            var racao;
+
+            if ((idade >= 1 && idade <= 4) && (linhagem === "COBB")) {
+                racao = "MATRIZ INICIAL - COBB";
+            } else if ((idade >= 5 && idade <= 18) && (linhagem === "COBB")) {
+                racao = "MATRIZ CRESCIMENTO - COBB, ROSS, HBB";
+            } else if ((idade >= 19 && idade <= 23) && (linhagem === "COBB")) {
+                racao = "MATRIZ PRE POSTURA - COBB, ROSS, HBB";
+            } else if ((idade >= 1 && idade <= 2) && (linhagem === "ROSS" || linhagem === "HBB")) {
+                racao = "MATRIZ PRE INICIAL - ROSS, HBB";
+            } else if ((idade >= 3 && idade <= 6) && (linhagem === "ROSS" || linhagem === "HBB")) {
+                racao = "MATRIZ INICIAL - ROSS, HBB";
+            } else if ((idade >= 7 && idade <= 16) && (linhagem === "ROSS" || linhagem === "HBB")) {
+                racao = "MATRIZ CRESCIMENTO - COBB, ROSS, HBB";
+            } else if ((idade >= 17 && idade <= 23) && (linhagem === "COBB" || linhagem === "ROSS" || linhagem === "HBB")) {
+                racao = "MATRIZ PRE POSTURA - COBB, ROSS, HBB";
+            } else if ((idade >= 24 && idade <= 34) && (linhagem === "ROSS" || linhagem === "HBB")) {
+                racao = "MATRIZ POSTURA 1 - ROSS, HBB";
+            } else if ((idade >= 35 && idade <= 49) && (linhagem === "ROSS")) {
+                racao = "MATRIZ POSTURA 2 - ROSS, HBB";
+            } else if ((idade >= 35) && (linhagem === "HBB")) {
+                racao = "MATRIZ POSTURA 2 - ROSS, HBB";
+            } else if ((idade >= 50) && (linhagem === "ROSS")) {
+                racao = "MATRIZ POSTURA 3 - ROSS, HBB";
+            } else if ((idade >= 24 && idade <= 38) && (linhagem === "COBB")) {
+                racao = "MATRIZ POSTURA 1 - COBB";
+            } else if ((idade >= 39 && idade <= 49) && (linhagem === "COBB")) {
+                racao = "MATRIZ POSTURA 2 - COBB";
+            } else if ((idade >= 50) && (linhagem === "COBB")) {
+                racao = "MATRIZ POSTURA 3 - COBB";
+            } else {
+                racao = "Tipo de racao nใo encontrado";
+            }
+
+            return racao;
+                }
+    </script>
+</head>
+
+<body>
+
+    <h2>TIPO DE RACAO - FRIATO </h2>
+
+    <form>
+        <label for="linhagem">Linhagem:</label>
+        <select id="linhagem" name="linhagem">
+            <option value="COBB">COBB</option>
+            <option value="ROSS">ROSS</option>
+            <option value="HBB">HBB</option>
+        </select>
+
+        <label for="idade">Idade:</label>
+        <input type="text" id="idade" name="idade">
+
+        <button type="button" onclick="calcularRacao()">Calcular Racao</button>
+
+    </form>
+    <hr>
+    <h3>TABELA DE ARRACOAMENTO MATRIZES DE CORTE - FRIATO</h3>
+    <table>
+         <thead>
+            <tr>
+                <th>TIPO DE RACAO</th>
+                <th>IDADE (SEMANAS)</th>
+                <th>LINHAGEM</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background-color: #dddddd;">
+    		<td>MATRIZ PRE INICIAL - COBB, ROSS, HBB</td>
+    		<td>1ช a 2 ช Semanas</td>
+    		<td>HBB</td>
+	</tr>
+	<tr style="background-color: #fffff;">
+    <td>MATRIZ PRE INICIAL - COBB, ROSS, HBB</td>
+    <td>1ช Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr>
+    <td>MATRIZ INICIAL – COBB</td>
+    <td>1ช a 4ช Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ INICIAL – ROSS, HBB</td>
+    <td>2ช a 4ช Semanas</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ INICIAL – ROSS, HBB</td>
+    <td>3ช a 6ช Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ CRESCIMENTO - COBB, ROSS, HBB</td>
+    <td>7ช a 16ช Semanas</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ CRESCIMENTO - COBB, ROSS, HBB</td>
+    <td>5ช a 18ช Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ CRESCIMENTO - COBB, ROSS, HBB</td>
+    <td>5ช a 6ช Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ PRE POSTURA - COBB, ROSS, HBB</td>
+    <td>17ช a +-23ช Semanas</td>
+    <td>ROSS e HBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ PRE POSTURA - COBB, ROSS, HBB</td>
+    <td>19ช semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 1 - ROSS, HBB</td>
+    <td>(1บ ovo) +- 24ช a 34ช Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 1 - ROSS, HBB</td>
+    <td>(1บ ovo) +- 24ช a 34ช Semanas</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 2 - ROSS, HBB</td>
+    <td>35ช a 49ช Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 2 - ROSS, HBB</td>
+    <td>45ช Semanas ate descarte</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 3 - ROSS, HBB</td>
+    <td>50ช Semanas ate descarte</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 3 - ROSS, HBB</td>
+    <td>28ช Semanas ate descarte</td>
+    <td>ROSS e HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 1 - COBB</td>
+    <td>(1บ ovo) +- 24ช a 38ช Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 2 - COBB</td>
+    <td>39ช a 49ช Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 3 - COBB</td>
+    <td>50ช Semanas ate descarte</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>RAวรO DE MACHO - COBB</td>
+    <td>28ช Semanas ate descarte</td>
+    <td>COBB</td>
+</tr>
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
