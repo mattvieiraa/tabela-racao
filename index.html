@@ -34,18 +34,24 @@
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+       document.addEventListener("DOMContentLoaded", function () {
             var cells = document.querySelectorAll('td, th');
             cells.forEach(function (cell) {
                 cell.textContent = cell.textContent.replace(/[^\w\s]/gi, '');
             });
         });
 
-        function calcularRacao() {
+function calcularRacao() {
             var linhagem = document.getElementById("linhagem").value;
             var idade = parseInt(document.getElementById("idade").value);
 
             var tipoRacao = obterTipoRacao(linhagem, idade);
+
+            // Remover a mensagem anterior, se existir
+            var mensagemAnterior = document.querySelector('.mensagem');
+            if (mensagemAnterior) {
+                mensagemAnterior.remove();
+            }
 
             // Criar elemento de mensagem
             var mensagemElement = document.createElement("div");
@@ -104,7 +110,7 @@
 
 <body>
 
-    <h2>TIPO DE RAÇÃO - FRIATO </h2>
+    <h2>TIPO DE RACAO - FRIATO </h2>
 
     <form>
         <label for="linhagem">Linhagem:</label>
@@ -227,7 +233,7 @@
     <td>COBB</td>
 </tr>
 <tr style="background-color: #ffffff;">
-    <td>RAÇÃO DE MACHO - COBB</td>
+    <td>RACAO DE MACHO - COBB</td>
     <td>28ª Semanas ate descarte</td>
     <td>COBB</td>
 </tr>
