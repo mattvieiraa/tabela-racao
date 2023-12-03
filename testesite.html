@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="pt-BR">
+    <git config --global core.autocrlf input>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de Ração - Fábrica de Ração 2 Friato</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #dddddd;
+        }
+
+        .mensagem {
+            background-color: #dddddd;
+            padding: 10px;
+            border: 1px solid #999999;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+            var cells = document.querySelectorAll('td, th');
+            cells.forEach(function (cell) {
+                cell.textContent = cell.textContent.replace(/[^\w\s]/gi, '');
+            });
+        });
+
+function calcularRacao() {
+            var linhagem = document.getElementById("linhagem").value;
+            var idade = parseInt(document.getElementById("idade").value);
+
+            var tipoRacao = obterTipoRacao(linhagem, idade);
+
+            // Remover a mensagem anterior, se existir
+            var mensagemAnterior = document.querySelector('.mensagem');
+            if (mensagemAnterior) {
+                mensagemAnterior.remove();
+            }
+
+            // Criar elemento de mensagem
+            var mensagemElement = document.createElement("div");
+            mensagemElement.classList.add("mensagem");
+            mensagemElement.textContent = "Tipo de Ração: " + tipoRacao;
+
+            // Inserir a mensagem acima da linha horizontal
+            var hrElement = document.querySelector('hr');
+            hrElement.parentNode.insertBefore(mensagemElement, hrElement);
+        }
+
+        	function obterTipoRacao(linhagem, idade) {
+
+            alert("Tipo de Ração: " + tipoRacao);
+        }
+
+        function obterTipoRacao(linhagem, idade) {
+            var Racao;
+
+if ((idade >= 1 && idade <= 2) && (linhagem === "HBB")) {
+    Racao = "MATRIZ PRE INICIAL - COBB, ROSS, HBB";
+} else if ((idade === 1) && (linhagem === "ROSS")) {
+    Racao = "MATRIZ PRE INICIAL - COBB, ROSS, HBB";
+} else if ((idade >= 1 && idade <= 4) && (linhagem === "COBB")) {
+    Racao = "MATRIZ INICIAL - COBB";
+} else if ((idade >= 2 && idade <= 4) && (linhagem === "HBB")) {
+    Racao = "MATRIZ INICIAL - ROSS, HBB";
+} else if ((idade >= 2 && idade <= 6) && (linhagem === "ROSS")) {
+    Racao = "MATRIZ INICIAL - ROSS, HBB";
+} else if ((idade >= 7 && idade <= 16) && (linhagem === "HBB")) {
+    Racao = "MATRIZ CRESCIMENTO - COBB, ROSS, HBB";
+} else if ((idade >= 5 && idade <= 18) && (linhagem === "COBB")) {
+    Racao = "MATRIZ CRESCIMENTO - COBB, ROSS, HBB";
+} else if ((idade >= 5 && idade <= 16) && (linhagem === "ROSS")) {
+    Racao = "MATRIZ CRESCIMENTO - COBB, ROSS, HBB";
+} else if ((idade >= 17 && idade <= 23) && (linhagem === "ROSS" || linhagem === "HBB")) {
+    Racao = "MATRIZ PRE POSTURA - COBB, ROSS, HBB";
+} else if ((idade >= 19 && idade <= 23) && (linhagem === "COBB")) {
+    Racao = "MATRIZ PRE POSTURA - COBB, ROSS, HBB";
+} else if ((idade >= 24 && idade <= 34) && (linhagem === "ROSS")) {
+    Racao = "MATRIZ POSTURA 1 - ROSS, HBB";
+} else if ((idade >= 24 && idade <= 34) && (linhagem === "HBB")) {
+    Racao = "MATRIZ POSTURA 1 - ROSS, HBB";
+} else if ((idade >= 35 && idade <= 49) && (linhagem === "ROSS")) {
+    Racao = "MATRIZ POSTURA 2 - ROSS, HBB";
+} else if ((idade >= 45) && (linhagem === "HBB")) {
+    Racao = "MATRIZ POSTURA 2 - ROSS, HBB";
+} else if ((idade >= 50) && (linhagem === "ROSS")) {
+    Racao = "MATRIZ POSTURA 3 - ROSS, HBB";
+} else if ((idade >= 24 && idade <= 38) && (linhagem === "COBB")) {
+    Racao = "MATRIZ POSTURA 1 - COBB";
+} else if ((idade >= 39 && idade <= 49) && (linhagem === "COBB")) {
+    Racao = "MATRIZ POSTURA 2 - COBB";
+} else if ((idade >= 50) && (linhagem === "COBB")) {
+    Racao = "MATRIZ POSTURA 3 - COBB";
+} else {
+                Racao = "Tipo de Ração não encontrado";
+            }
+
+            return Racao;
+                }
+    </script>
+</head>
+
+<body>
+
+    <h2>TIPO DE RACAO - FRIATO </h2>
+
+    <form>
+        <label for="linhagem">Linhagem:</label>
+        <select id="linhagem" name="linhagem">
+            <option value="COBB">COBB</option>
+            <option value="ROSS">ROSS</option>
+            <option value="HBB">HBB</option>
+        </select>
+
+        <label for="idade">Idade:</label>
+        <input type="text" id="idade" name="idade">
+
+        <button type="button" onclick="calcularRacao()">Calcular Ração</button>
+
+    </form>
+    <hr>
+    <h3>TABELA DE ARRAÇOAMENTO MATRIZES DE CORTE - FRIATO</h3>
+    <table>
+         <thead>
+            <tr>
+                <th>TIPO DE RAÇÃO</th>
+                <th>IDADE (SEMANAS)</th>
+                <th>LINHAGEM</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background-color: #dddddd;">
+    		<td>MATRIZ PRE INICIAL - COBB, ROSS, HBB</td>
+    		<td>1ª a 2 ª Semanas</td>
+    		<td>HBB</td>
+	</tr>
+	<tr style="background-color: #fffff;">
+    <td>MATRIZ PRE INICIAL - COBB, ROSS, HBB</td>
+    <td>1ª Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr>
+    <td>MATRIZ INICIAL – COBB</td>
+    <td>1ª a 4ª Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ INICIAL – ROSS, HBB</td>
+    <td>2ª a 4ª Semanas</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ INICIAL – ROSS, HBB</td>
+    <td>3ª a 6ª Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ CRESCIMENTO - COBB, ROSS, HBB</td>
+    <td>7ª a 16ª Semanas</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ CRESCIMENTO - COBB, ROSS, HBB</td>
+    <td>5ª a 18ª Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ CRESCIMENTO - COBB, ROSS, HBB</td>
+    <td>5ª a 16ª Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ PRE POSTURA - COBB, ROSS, HBB</td>
+    <td>17ª a +-23ª Semanas</td>
+    <td>ROSS e HBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ PRE POSTURA - COBB, ROSS, HBB</td>
+    <td>19ª semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 1 - ROSS, HBB</td>
+    <td>(1º ovo) +- 24ª a 34ª Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 1 - ROSS, HBB</td>
+    <td>(1º ovo) +- 24ª a 34ª Semanas</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 2 - ROSS, HBB</td>
+    <td>35ª a 49ª Semanas</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 2 - ROSS, HBB</td>
+    <td>45ª Semanas ate descarte</td>
+    <td>HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 3 - ROSS, HBB</td>
+    <td>50ª Semanas ate descarte</td>
+    <td>ROSS</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 3 - ROSS, HBB</td>
+    <td>28ª Semanas ate descarte</td>
+    <td>ROSS e HBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 1 - COBB</td>
+    <td>(1º ovo) +- 24ª a 38ª Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>MATRIZ POSTURA 2 - COBB</td>
+    <td>39ª a 49ª Semanas</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #dddddd;">
+    <td>MATRIZ POSTURA 3 - COBB</td>
+    <td>50ª Semanas ate descarte</td>
+    <td>COBB</td>
+</tr>
+<tr style="background-color: #ffffff;">
+    <td>RAÇÃO DE MACHO - COBB</td>
+    <td>28ª Semanas ate descarte</td>
+    <td>COBB</td>
+</tr>
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
